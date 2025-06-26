@@ -6,5 +6,5 @@ r <- GET(AAA_hit_api)
 AAA_hit <- fromJSON(content(r, as = "text"))
 AAA_hit <- as.data.frame(AAA_hit)
 AAA_hit_final <- AAA_hit %>%
-  select(PlayerName, `K%`, `BB%`) %>%
+  select(PlayerName, TeamName, `K%`, `BB%`) %>%
   arrange(desc(`BB%`))
