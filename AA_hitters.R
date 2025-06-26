@@ -13,4 +13,5 @@ AA_hit_final <- AA_hit %>%
 
 ggplot(AA_hit_final, aes(`K%`, `BB%`, label = PlayerName)) + 
   geom_point() + 
-  geom_text_repel(data=subset(AA_hit_final, `K%` > 0.33 | `BB%` > 0.175))
+  geom_text_repel(data=subset(AA_hit_final, `K%` > 0.33 | `BB%` > 0.175),
+                  size = 3)
