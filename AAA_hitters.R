@@ -10,5 +10,6 @@ AAA_hit_final <- AAA_hit %>%
   select(PlayerName, TeamName, `K%`, `BB%`) %>%
   arrange(desc(`BB%`))
 
-ggplot(data = AAA_hit_final, mapping = aes(x = `K%`, y = `BB%`)) + 
-  geom_point()
+ggplot(AAA_hit_final, aes(`K%`, `BB%`, label = PlayerName)) + 
+  geom_point() + 
+  geom_text(data=subset(AAA_hit_final, `K%` > 0.33 | `BB%` > 0.175))
