@@ -8,10 +8,14 @@ r <- GET(A_hit_api)
 A_hit <- fromJSON(content(r, as = "text"))
 A_hit <- as.data.frame(A_hit)
 A_hit_final <- A_hit %>%
-  select(PlayerName, TeamName, `K%`, `BB%`) %>%
+  select(PlayerName, AffAbbName, `K%`, `BB%`) %>%
   arrange(desc(`BB%`))
 
-ggplot(A_hit_final, aes(`K%`, `BB%`, label = PlayerName)) + 
+ggplot(A_hit_final, aes(`K%`, `BB%`, label = paste0(PlayerName, ' (', AffAbbName, ')'))) + 
   geom_point() + 
-  geom_text_repel(data=subset(A_hit_final, `K%` > 0.35 | `BB%` > 0.185),
-                  size = 3)
+  scale_x_reverse() +
+  geom_text_repel(data=subset(A_hit_final, `K%` < 0.125 | `BB%` > 0.185),
+                  size=3, box.padding = 0.5) +
+  geom_hline(yintercept = mean(A_hit_final$`BB%`, na.rm = TRUE), linewidth=0.2) +
+  geom_vline(xintercept = mean(A_hit_final$`K%`, na.rm = TRUE), linewidth=0.2) +
+  theme_bw()
