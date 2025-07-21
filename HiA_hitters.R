@@ -12,10 +12,10 @@ HiA_hit_final <- HiA_hit %>%
   arrange(desc(`BB%`))
 
 ggplot(HiA_hit_final, aes(`K%`, `BB%`, label = paste0(PlayerName, ' (', AffAbbName, ')'))) + 
-  geom_point() + 
+  geom_point(color = "gray") + 
   scale_x_reverse() +
-  geom_text_repel(data=subset(HiA_hit_final, `K%` < 0.125 | `BB%` > 0.185),
-                  size=3, box.padding = 0.5) +
+  geom_text_repel(data=subset(HiA_hit_final, `K%` < 0.12 | `BB%` > 0.185),
+                  size=3, box.padding = 0.5, fontface = "bold") +
   geom_hline(yintercept = mean(HiA_hit_final$`BB%`, na.rm = TRUE), linewidth=0.2) +
   geom_vline(xintercept = mean(HiA_hit_final$`K%`, na.rm = TRUE), linewidth=0.2) +
   theme_bw()
