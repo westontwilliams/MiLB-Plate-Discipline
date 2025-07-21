@@ -18,4 +18,5 @@ ggplot(AA_hit_final, aes(`K%`, `BB%`, label = paste0(PlayerName, ' (', AffAbbNam
                   size=3, box.padding = 0.5, fontface = "bold") +
   geom_hline(yintercept = mean(AA_hit_final$`BB%`, na.rm = TRUE), linewidth=0.2) +
   geom_vline(xintercept = mean(AA_hit_final$`K%`, na.rm = TRUE), linewidth=0.2) +
-  theme_bw()
+  theme_bw() +
+  labs(title = "BB% vs K% in AA Hitters")
