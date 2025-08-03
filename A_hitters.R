@@ -15,7 +15,7 @@ ggplot(A_hit_final, aes(`K%`, `BB%`, label = paste0(PlayerName, ' (', AffAbbName
   geom_point(color = "gray") + 
   scale_x_reverse() +
   geom_text_repel(data=subset(A_hit_final, (`K%` < 0.125 | `BB%` > 0.185) | (`BB%` > `K%`)),
-                  size=3, box.padding = 0.4, fontface = "bold") +
+                  size=3, box.padding = 0.5, fontface = "bold") +
   geom_hline(yintercept = mean(A_hit_final$`BB%`, na.rm = TRUE), linewidth=0.2) +
   geom_vline(xintercept = mean(A_hit_final$`K%`, na.rm = TRUE), linewidth=0.2) +
   theme_bw() +
